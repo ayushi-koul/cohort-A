@@ -1,0 +1,33 @@
+#include <vector>
+using namespace std;
+class Solution {
+public:
+    int numRookCaptures(vector<vector<char>>& board) {
+        int n = board.size();
+        int Row = -1, Col = -1;
+        for (int i = 0; i < n && (Row == -1); ++i) {
+            for (int j = 0; j < n && (Row == -1); ++j) {
+                if (board[i][j] == 'R') {
+                    Row = i;
+                    Col = j;
+                }
+            }
+        }
+                int directions[4][2] = {{0, 1}, {0, -1}, {1, 0}, {-1, 0}};
+        int Attacked = 0;
+        for (const auto& dir : directions) {
+            int r = Row, c = Col;
+            while (true) {
+                r += dir[0];
+                c += dir[1];
+                if (r < 0 || r >= n || c < 0 || c >= n) break;
+                if (board[r][c] == 'B') break;
+                if (board[r][c] == 'p') {
+                    ++Attacked;
+                    break;
+                }
+            }
+        }
+        return Attacked;
+    }
+};
