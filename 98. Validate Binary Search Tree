@@ -1,0 +1,19 @@
+class Solution {
+public:
+    bool isValidBST(TreeNode* root) {
+        vector<int> values;
+        inorderTraversal(root, values);
+        for(int i=1; i<values.size(); i++){
+            if (values[i]<= values[i-1]){
+                return false;
+            }
+        }
+        return true;
+    }
+    void inorderTraversal(TreeNode* node, vector<int>& values){
+        if(node==NULL) return;
+        inorderTraversal(node-> left,values);
+        values.push_back(node->val);
+        inorderTraversal(node->right,values);
+    }
+};
