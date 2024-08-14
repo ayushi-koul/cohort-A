@@ -1,0 +1,16 @@
+class Solution {
+public:
+    TreeNode* buildTree(vector<int>& preorder, vector<int>& inorder) {
+        TreeNode* root = new TreeNode(preorder[0]);
+        TreeNode* temp=root;
+        for(int i=1; i<preorder.size(); i++){
+            if(i%2==1)
+            temp->left=new TreeNode(preorder[i]);
+            else{
+                temp->right=new TreeNode(preorder[i]);
+                temp=temp->right;
+            }
+        }
+        return root;
+    }
+};
